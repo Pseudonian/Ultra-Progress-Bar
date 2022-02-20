@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "assert": "^2.0.0"
+  }
+}
