@@ -3,6 +3,8 @@ body {
     height: 100vh;
     background-color: #111111;
     color: #fff;
+    margin: 0px;
+    padding: 0px;
   }
   main {
     overflow-y: auto;
@@ -10,18 +12,43 @@ body {
   ul {
     list-style: none;
     text-align: center;
+    padding: 0px;
   }
   li {
+    list-style: none;
     color: #fff;
     text-align: center;
+    vertical-align: center;
   }
+
+  .mainProgressBarArea {
+    position: flex;
+    flex-direction: row;
+    border-top: 2px solid red;
+    border-bottom: 2px solid white;
+} 
+
+  .tabSeparator {
+   width: 20%;
+   margin-top: 15px;
+   margin-bottom: 15px;
+   border-right: 2px solid black
+  }
+
+  .progressBarBig {
+    width: 50%;
+    border: 2px solid white
+  }
+
   aside {
     border-right:  1px solid #ededed;
-    flex: 1 0 10%;
+    flex: 1 0 0%;
     max-width: 20%;
+    left: 0
   }
   .wrapper {
     display: flex;
+    flex-direction: row;
     height: 100%;
   }
 
@@ -45,14 +72,11 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-  }
-  .tabSeparator {
-      height: 120px;
-      text-align: left;
-      justify-content: baseline;
+    left: 0px;
+    width: 100%;
   }
   .tab {
-      height: 45px;
+      padding: 16px;
       border-top: 1px solid black;
       border-bottom: 1px solid black;
       justify-content: space-between;
