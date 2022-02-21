@@ -1,0 +1,155 @@
+:root {
+    --bronze: #cd7f32;
+    --side-nav-width: 20%;
+}
+
+body {
+    overflow: hidden;
+    height: 100vh;
+    background-color: #111;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    font-family: Manrope, sans-serif;
+}
+
+main {
+    overflow-y: auto;
+}
+
+ul {
+    list-style: none;
+    text-align: center;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+    color: #fff;
+    text-align: center;
+    vertical-align: center;
+}
+
+.mainProgressBarArea {
+    display: flex;
+    flex-direction: row;
+    border-top: 2px solid red;
+    border-bottom: 2px solid white;
+    width: 100%;
+}
+
+.tabSeparator {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: var(--side-nav-width);
+    color: yellow;
+    text-align: center;
+}
+
+.progressBarBig {
+    position: relative;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 50px;
+    border: 2px solid white;
+    margin-left: 5%;
+    width: 70%;
+}
+
+.progressBarBigText {
+    position: absolute;
+    bottom: 0;
+    height: 25px;
+    border: 2px solid white;
+    border-top-left-radius: 20%;
+    border-top-right-radius: 20%;
+    background-color: black;
+    z-index: 10;
+    text-align: center;
+}
+
+#progression {
+    width: 5%;
+    background-color: purple;
+    height: 100%;
+}
+
+#level {
+    right: 550px;
+    width: 100px;
+}
+
+#EXP {
+    right: 400px;
+    width: 150px;
+}
+
+#perSecCurr {
+    right: 250px;
+    width: 150px;
+    color: gold;
+}
+
+#perSecPrev {
+    right: 100px;
+    width: 150px;
+    color: var(--bronze);
+}
+
+#coinWorth {
+    right: 0;
+    width: 100px;
+    color: gold;
+}
+
+aside {
+    border-right: 1px solid #ededed;
+    flex: 1 0 0%;
+    max-width: var(--side-nav-width);
+    left: 0;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+@media (max-width: 500px) {
+    .wrapper {
+        flex-direction: column-reverse;
+    }
+
+    ul {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+.wrapper_inner {
+    position: relative;
+    margin: 50px;
+    height: 400px;
+    width: 900px;
+    border: 2px solid white;
+}
+
+.tabColumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    left: 0;
+    width: 100%;
+}
+
+.tab {
+    padding: 16px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    justify-content: space-between;
+}
+
+#mainTab {
+    text-align: center;
+}
