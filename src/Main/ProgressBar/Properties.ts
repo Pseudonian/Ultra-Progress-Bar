@@ -25,8 +25,14 @@ export const computeMainBarTNL = () => {
 }
 
 export const incrementMainBarEXP = (delta: number) => {
-    player.barEXP += delta
-    currentPerSec += delta
+    let baseAmountPerSecond = 1
+    baseAmountPerSecond += player.coinUpgrades.barSpeed.upgradeEffect();
+
+    baseAmountPerSecond *= 1 + 100 * Math.min(1, player.barEXP / player.barTNL) * player.coinUpgrades.barMomentum.upgradeEffect();
+    
+    let actualAmount = baseAmountPerSecond * delta
+    player.barEXP += actualAmount
+    currentPerSec += actualAmount
 
     document.getElementById("perSecCurr").textContent = `+${format(currentPerSec,2)} this sec`
 }
@@ -58,6 +64,7 @@ export function backgroundColorCreation() {
 }
 
 export const levelUpBar = () => {
+    player.coins.gain(computeMainBarCoinWorth());
     player.barEXP -= player.barTNL
     player.barLevel += 1;
 
@@ -86,7 +93,7 @@ export const computeMainBarCoinWorth = () => {
     let baseWorth = 0;
 
     const nextLevel = player.barLevel + 1
-    baseWorth += Math.floor(nextLevel / 10)
+    baseWorth += Math.floor((nextLevel + 7) / 10)
     // Highest level bonus
     if (nextLevel > player.highestBarLevel)
         baseWorth += 3;

@@ -1,4 +1,5 @@
 import localforage from 'localforage';
+import { Coins } from './Main/Currency/Variants/Coin';
 
 /*
 * This is the player variable, which is used throughout the game!
@@ -11,6 +12,11 @@ export const player: Player = {
     totalEXP: 0,
     barLevel: 0,
     highestBarLevel: 0,
+    coins: new Coins(),
+    coinUpgrades: {
+        barSpeed: new CoinBarSpeed(0, coinUpgradeCosts.barSpeed),
+        barMomentum: new CoinBarMomentum(0, coinUpgradeCosts.barMomentum)
+    },
 }
 
 /**
@@ -37,6 +43,13 @@ export const saveGame = async () => {
 }
 
 /**
+ * Map of properties on the Player object to adapt
+ */
+ const toAdapt = new Map<keyof Player, (data: Player) => unknown>([
+    ['coins', data => new Coins(Number(data.coins.amount))],
+]);
+
+/**
  * Loads from localforage directly
  */
 const loadSavefile = async () => {
@@ -44,12 +57,15 @@ const loadSavefile = async () => {
     const save = await localforage.getItem<string>('UPBSave');
 
     const data = save ? JSON.parse(atob(save)) as Player & Record<string, unknown> : null
-
+    return
     if (data) {
         Object.keys(data).forEach((stringProp) => {
             const prop = stringProp as keyof Player
             if (!(prop in player)) {
                 return;
+            }
+            else if (toAdapt.has(prop)) {
+                return ((player[prop] as unknown) = toAdapt.get(prop)(data));
             }
             return ((player[prop] as unknown) = data[prop])
         }
@@ -63,8 +79,11 @@ const loadSavefile = async () => {
 */
 
 import { backgroundColorCreation, computeMainBarCoinWorth, computeMainBarTNL, getBarWidth, incrementMainBarEXP, levelUpBar, updateDPS, updateMainBar, updateMainBarInformation } from "./Main/ProgressBar/Properties";
+import { CoinBarMomentum, CoinBarSpeed, coinUpgradeCosts } from './Main/Upgrades/Variants/Coin';
 import { Player } from "./types/player";
+import { generateEventHandlers } from './Utilities/Eventlisteners';
 import { format } from './Utilities/Format';
+import { hideStuff } from './Utilities/UpdateHTML';
 
 export const intervalHold = new Set<ReturnType<typeof setInterval>>();
 export const interval = new Proxy(setInterval, {
@@ -86,7 +105,7 @@ export const clearInt = new Proxy(clearInterval, {
 });
 
 window.addEventListener('load', () => {
-    /*generateEventHandlers();*/
+    generateEventHandlers();
     void loadGame();
 });
 
@@ -130,6 +149,7 @@ export const loadGame = async () => {
     /*Maintain Autosave*/
     interval(saveGame, saveRate)
 
+    hideStuff("Main")
     document.getElementById("progression").style.backgroundColor = backgroundColorCreation();
     document.getElementById("coinWorth").textContent =  `Worth ${format(computeMainBarCoinWorth())} coins`;
 }
