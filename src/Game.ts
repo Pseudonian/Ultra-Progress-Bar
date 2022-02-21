@@ -140,6 +140,10 @@ export const tick = () => {
     lastUpdate += delta
 }
 
+/**
+ * Updates major game states (the main progress bar) per tick (about 50/sec)
+ * @param delta how many seconds have elapsed since the previous tick
+ */
 export const tock = (delta: number) => {
 
     incrementMainBarEXP(delta);
