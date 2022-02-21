@@ -1,6 +1,6 @@
 :root {
     --bronze: #cd7f32;
-    --sideNavWidth: 20%;
+    --side-nav-width: 20%;
 }
 
 body {
@@ -10,8 +10,7 @@ body {
     color: #fff;
     margin: 0;
     padding: 0;
-
-    font-family: 'Manrope', sans-serif;;
+    font-family: Manrope, sans-serif;
 }
 
 main {
@@ -42,7 +41,7 @@ li {
 .tabSeparator {
     margin-top: 15px;
     margin-bottom: 15px;
-    width: var(--sideNavWidth);
+    width: var(--side-nav-width);
     color: yellow;
     text-align: center;
 }
@@ -79,30 +78,34 @@ li {
     right: 550px;
     width: 100px;
 }
+
 #EXP {
     right: 400px;
     width: 150px;
 }
+
 #perSecCurr {
     right: 250px;
     width: 150px;
     color: gold;
 }
+
 #perSecPrev {
     right: 100px;
     width: 150px;
     color: var(--bronze);
 }
+
 #coinWorth {
-    right: 0px;
+    right: 0;
     width: 100px;
-    color: gold
+    color: gold;
 }
 
 aside {
     border-right: 1px solid #ededed;
     flex: 1 0 0%;
-    max-width: var(--sideNavWidth);
+    max-width: var(--side-nav-width);
     left: 0;
 }
 
@@ -129,7 +132,7 @@ aside {
     margin: 50px;
     height: 400px;
     width: 900px;
-    border: 2px solid white
+    border: 2px solid white;
 }
 
 .tabColumn {
