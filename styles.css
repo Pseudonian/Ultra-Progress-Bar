@@ -1,5 +1,6 @@
 :root {
     --bronze: #cd7f32;
+    --sideNavWidth: 20%;
 }
 
 body {
@@ -41,7 +42,7 @@ li {
 .tabSeparator {
     margin-top: 15px;
     margin-bottom: 15px;
-    width: 20%;
+    width: var(--sideNavWidth);
     color: yellow;
     text-align: center;
 }
@@ -101,7 +102,7 @@ li {
 aside {
     border-right: 1px solid #ededed;
     flex: 1 0 0%;
-    max-width: 20%;
+    max-width: var(--sideNavWidth);
     left: 0;
 }
 
@@ -124,8 +125,11 @@ aside {
 }
 
 .wrapper_inner {
-    width: 90%;
-    margin: 0 auto;
+    position: relative;
+    margin: 50px;
+    height: 400px;
+    width: 900px;
+    border: 2px solid white
 }
 
 .tabColumn {
@@ -141,4 +145,8 @@ aside {
     border-top: 1px solid black;
     border-bottom: 1px solid black;
     justify-content: space-between;
+}
+
+#mainTab {
+    text-align: center;
 }

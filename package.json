@@ -26,5 +26,14 @@
     "watch:esbuild": "npx esbuild src/Game.ts --bundle --minify --sourcemap --target=\"chrome58,firefox57,safari11,edge29\" --outfile=\"./dist/out.js\" --watch",
     "check:tsc": "npx -p typescript tsc",
     "watch:tsc": "npx -p typescript tsc --watch"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pseudonian/Ultra-Progress-Bar.git"
+  },
+  "keywords": ["Ultimate Progress Bar", "Ultimate", "Progress", "Bar", "Platonic"],
+  "author": "Kevin Bunn",
+  "license": "MIT",
+  "homepage": "https://github.com/Pseudonian/Ultra-Progress-Bar#readme"
+
 }
