@@ -36,6 +36,9 @@ export const saveGame = async () => {
     }
 }
 
+/**
+ * Loads from localforage directly
+ */
 const loadSavefile = async () => {
     console.log('load attempted')
     const save = await localforage.getItem<string>('UPBSave');
