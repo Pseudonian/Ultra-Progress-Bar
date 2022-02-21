@@ -1,12 +1,13 @@
 :root {
     --bronze: #cd7f32;
     --side-nav-width: 20%;
+    --mainBG: #111111
 }
 
 body {
     overflow: hidden;
     height: 100vh;
-    background-color: #111;
+    background-color: var(--mainBG);
     color: #fff;
     margin: 0;
     padding: 0;
@@ -150,6 +151,36 @@ aside {
     justify-content: space-between;
 }
 
-#mainTab {
+.tabs {
     text-align: center;
+}
+
+#coin-upgrades {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.coin-upgrade {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    border: 2px solid gold;
+    padding: 12px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.coin-upgrade-txt {
+    height: auto;
+    margin: auto;
+}
+
+.coin-upgrade > button {
+    height: 20px;
+    width: 150px;
+    cursor: pointer;
+    background-color: var(--mainBG);
+    color: white
 }
