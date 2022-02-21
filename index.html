@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html lang="eng">
     <head>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200&display=swap" rel="stylesheet">
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
         <meta content="utf-8" http-equiv="encoding">
         <link rel="icon" href="UPBTransparent.ico" type="image/x-icon" sizes="16x16">
+        <script src="./dist/out.js" defer></script>
         <title>Ultimate Progress Bar</title> 
     </head>
 
@@ -12,9 +18,14 @@
 
     <body>
         <div class="mainProgressBarArea" id="progressTesting">
-            <div class="tabSeparator" id="wtf"></div>
-            <div class="progressBarBig">
-                
+            <div class="tabSeparator" id="progressBarTest1"><p>Ultimate Progress Bar v0.0</p></div>
+            <div class="progressBarBig" id="progressBarTest2">
+                <div id="progression"></div>
+                <div class="progressBarBigText" id="level"></div>
+                <div class="progressBarBigText" id="EXP"></div>
+                <div class="progressBarBigText" id="perSecCurr"></div>
+                <div class="progressBarBigText" id="perSecPrev"></div>
+                <div class="progressBarBigText" id="coinWorth"></div>
             </div>
         </div>
         <div class="wrapper" id="test">

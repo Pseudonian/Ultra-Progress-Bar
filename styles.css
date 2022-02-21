@@ -1,83 +1,144 @@
+:root {
+    --bronze: #cd7f32;
+}
+
 body {
     overflow: hidden;
     height: 100vh;
-    background-color: #111111;
+    background-color: #111;
     color: #fff;
-    margin: 0px;
-    padding: 0px;
-  }
-  main {
+    margin: 0;
+    padding: 0;
+
+    font-family: 'Manrope', sans-serif;;
+}
+
+main {
     overflow-y: auto;
-  }
-  ul {
+}
+
+ul {
     list-style: none;
     text-align: center;
-    padding: 0px;
-  }
-  li {
+    padding: 0;
+}
+
+li {
     list-style: none;
     color: #fff;
     text-align: center;
     vertical-align: center;
-  }
+}
 
-  .mainProgressBarArea {
-    position: flex;
+.mainProgressBarArea {
+    display: flex;
     flex-direction: row;
     border-top: 2px solid red;
     border-bottom: 2px solid white;
-} 
+    width: 100%;
+}
 
-  .tabSeparator {
-   width: 20%;
-   margin-top: 15px;
-   margin-bottom: 15px;
-   border-right: 2px solid black
-  }
+.tabSeparator {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 20%;
+    color: yellow;
+    text-align: center;
+}
 
-  .progressBarBig {
-    width: 50%;
-    border: 2px solid white
-  }
+.progressBarBig {
+    position: relative;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 50px;
+    border: 2px solid white;
+    margin-left: 5%;
+    width: 70%;
+}
 
-  aside {
-    border-right:  1px solid #ededed;
+.progressBarBigText {
+    position: absolute;
+    bottom: 0;
+    height: 25px;
+    border: 2px solid white;
+    border-top-left-radius: 20%;
+    border-top-right-radius: 20%;
+    background-color: black;
+    z-index: 10;
+    text-align: center;
+}
+
+#progression {
+    width: 5%;
+    background-color: purple;
+    height: 100%;
+}
+
+#level {
+    right: 550px;
+    width: 100px;
+}
+#EXP {
+    right: 400px;
+    width: 150px;
+}
+#perSecCurr {
+    right: 250px;
+    width: 150px;
+    color: gold;
+}
+#perSecPrev {
+    right: 100px;
+    width: 150px;
+    color: var(--bronze);
+}
+#coinWorth {
+    right: 0px;
+    width: 100px;
+    color: gold
+}
+
+aside {
+    border-right: 1px solid #ededed;
     flex: 1 0 0%;
     max-width: 20%;
-    left: 0
-  }
-  .wrapper {
+    left: 0;
+}
+
+.wrapper {
     display: flex;
     flex-direction: row;
     height: 100%;
-  }
+}
 
-  @media (max-width: 500px) {
+@media (max-width: 500px) {
     .wrapper {
-      flex-direction: column-reverse;
+        flex-direction: column-reverse;
     }
+
     ul {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
-    
-  }
-  .wrapper_inner {
+}
+
+.wrapper_inner {
     width: 90%;
-    margin: 0px auto;
-  }
-  
-  .tabColumn {
+    margin: 0 auto;
+}
+
+.tabColumn {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    left: 0px;
+    left: 0;
     width: 100%;
-  }
-  .tab {
-      padding: 16px;
-      border-top: 1px solid black;
-      border-bottom: 1px solid black;
-      justify-content: space-between;
-  }
+}
+
+.tab {
+    padding: 16px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    justify-content: space-between;
+}
