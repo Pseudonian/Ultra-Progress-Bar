@@ -147,11 +147,12 @@ export const loadGame = async () => {
     Object.defineProperty(window, 'player', {
         value: player
     });
+    await loadSavefile();
 
     player.barTNL = computeMainBarTNL();
-    updateMainBar(getBarWidth(player.barEXP, player.barTNL))
+    updateMainBar(getBarWidth(player.barEXP, player.barTNL));
+    player.barFragments.updateHTML();
 
-    await loadSavefile();
     /*Maintain Autosave*/
     interval(saveGame, saveRate)
 
