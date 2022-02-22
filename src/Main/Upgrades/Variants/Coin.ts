@@ -8,8 +8,14 @@ export abstract class CoinUpgrade extends Upgrade {
         super(level, cost)
         this.updateHTML();
     }
-    purchaseLevels(amount: number){
-        console.log('test')
+    purchaseLevels(amount: number, event: MouseEvent){
+        if (event.shiftKey)
+            amount = -1 //BUYMAX
+
+        if (amount === -1) {
+            amount = Math.floor(player.coins.amount / this.cost);
+        }
+        
         if (this.cost * amount <= player.coins.amount) {
             player.coins.spend(this.cost * amount)
             this.level += amount;

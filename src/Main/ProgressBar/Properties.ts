@@ -14,6 +14,8 @@ export const computeMainBarTNL = () => {
     let TNL = 0
     // Additive Component
     TNL += baseEXPReq * Math.pow(player.barLevel + 1, 2)
+    // Nerf until level 20.
+    TNL *= Math.min(1, (player.barLevel + 20) / 40)
     // Multiplicative Component (Bumps at 50, 100, 200)
     if (player.barLevel > 50)
         TNL *= Math.pow(2, 1/10 * (player.barLevel - 50))
@@ -24,12 +26,31 @@ export const computeMainBarTNL = () => {
     return TNL
 }
 
+export const computeBarArmor = () => {
+    // Armor is a value in [0, 1]
+    // 1 indicates no progress, 0 indicates full progress.
+
+    let baseArmor = 0
+    if (player.barLevel >= 5) {
+        baseArmor = 0.2
+    }
+    if (player.barLevel >= 10) {
+        baseArmor += 0.8 * (1 - Math.pow(Math.E, -(player.barLevel - 10) / 90))
+    }
+    return baseArmor
+}
+
+export const computeArmorMultiplier = () => {
+    const armor = computeBarArmor();
+    return 1 - (armor * (1 - player.barEXP / player.barTNL))
+}
+
 export const incrementMainBarEXP = (delta: number) => {
     let baseAmountPerSecond = 1
     baseAmountPerSecond += player.coinUpgrades.barSpeed.upgradeEffect();
-
+    baseAmountPerSecond *= player.barFragments.unspentBonus();
     baseAmountPerSecond *= 1 + 100 * Math.min(1, player.barEXP / player.barTNL) * player.coinUpgrades.barMomentum.upgradeEffect();
-    
+    baseAmountPerSecond *= computeArmorMultiplier();
     let actualAmount = baseAmountPerSecond * delta
     player.barEXP += actualAmount
     currentPerSec += actualAmount
@@ -68,6 +89,10 @@ export const levelUpBar = () => {
     player.barEXP -= player.barTNL
     player.barLevel += 1;
 
+    if (player.barLevel > player.highestBarLevel) {
+        player.highestBarLevel = player.barLevel
+    }
+
     console.log(backgroundColorCreation())
     document.getElementById('progression').style.backgroundColor = backgroundColorCreation();
     player.barTNL = computeMainBarTNL()
@@ -75,7 +100,7 @@ export const levelUpBar = () => {
     updateMainBar(width);
     
     document.getElementById("coinWorth").textContent =  `Worth ${format(computeMainBarCoinWorth())} coins`;
-    
+    player.barFragments.updateHTML();
 }
 
 export const updateMainBarInformation = () => {

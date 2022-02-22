@@ -1,5 +1,6 @@
 import localforage from 'localforage';
 import { Coins } from './Main/Currency/Variants/Coin';
+import { ProgressFragment } from './Main/Currency/Variants/ProgressFragment';
 
 /*
 * This is the player variable, which is used throughout the game!
@@ -17,6 +18,7 @@ export const player: Player = {
         barSpeed: new CoinBarSpeed(0, coinUpgradeCosts.barSpeed),
         barMomentum: new CoinBarMomentum(0, coinUpgradeCosts.barMomentum)
     },
+    barFragments: new ProgressFragment(), 
 }
 
 /**
@@ -47,6 +49,7 @@ export const saveGame = async () => {
  */
  const toAdapt = new Map<keyof Player, (data: Player) => unknown>([
     ['coins', data => new Coins(Number(data.coins.amount))],
+    ['barFragments', data => new ProgressFragment(Number(data.barFragments.amount))]
 ]);
 
 /**
@@ -57,7 +60,7 @@ const loadSavefile = async () => {
     const save = await localforage.getItem<string>('UPBSave');
 
     const data = save ? JSON.parse(atob(save)) as Player & Record<string, unknown> : null
-    return
+    
     if (data) {
         Object.keys(data).forEach((stringProp) => {
             const prop = stringProp as keyof Player
@@ -69,7 +72,10 @@ const loadSavefile = async () => {
             }
             return ((player[prop] as unknown) = data[prop])
         }
-    )};
+    )
+    player.coinUpgrades.barSpeed = new CoinBarSpeed(data.coinUpgrades.barSpeed.level, coinUpgradeCosts.barSpeed);
+    player.coinUpgrades.barMomentum = new CoinBarMomentum(data.coinUpgrades.barMomentum.level, coinUpgradeCosts.barMomentum);
+};
 }
 
 
